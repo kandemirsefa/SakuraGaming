@@ -3,100 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakura Gaming | Premium UC Satış</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Sakura Gaming | Premium Market</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --sakura-pink: #ffb7c5;
-            --sakura-dark: #1a1a2e;
-            --sakura-accent: #e94560;
-            --text-color: #ffffff;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
-
-        body { 
-            background-color: var(--sakura-dark); 
-            color: var(--text-color);
-            background-image: radial-gradient(circle at 20% 30%, rgba(255, 183, 197, 0.05) 0%, transparent 50%);
-        }
-
-        nav { padding: 2rem 5%; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--sakura-pink); letter-spacing: 2px; }
-
-        .hero { text-align: center; padding: 4rem 1rem; }
-        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
-        .hero p { color: #a0a0a0; margin-bottom: 2rem; }
-
-        .container { max-width: 1100px; margin: auto; padding: 0 20px; }
-
-        .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 2rem; }
-
-        .card { 
-            background: rgba(255, 255, 255, 0.03); 
-            border: 1px solid rgba(255, 183, 197, 0.1);
-            border-radius: 20px; 
-            padding: 20px; 
-            transition: 0.4s;
-        }
-
-        .card:hover { transform: translateY(-10px); border-color: var(--sakura-pink); }
-
-        .card img { width: 100%; height: 200px; border-radius: 15px; object-fit: cover; margin-bottom: 15px; }
-
-        .card h3 { margin-bottom: 10px; }
-
-        .btn { 
-            display: block; width: 100%; padding: 12px; margin-top: 15px;
-            background: var(--sakura-pink); color: var(--sakura-dark);
-            text-align: center; text-decoration: none; font-weight: 700;
-            border-radius: 10px; transition: 0.3s;
-        }
-
-        .btn:hover { background: var(--sakura-accent); color: white; }
-
-        footer { text-align: center; padding: 4rem; color: #555; font-size: 0.9rem; }
+        :root { --accent: #ff7aa2; --bg: #0a0a0c; --card: #15151b; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg); color: #fff; padding: 40px 20px; }
+        .container { max-width: 1000px; margin: auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        
+        .card { background: var(--card); padding: 25px; border-radius: 20px; border: 1px solid #222; text-align: center; }
+        .card img { width: 100%; height: 160px; object-fit: cover; border-radius: 12px; margin-bottom: 15px; }
+        
+        .qty-box { margin: 15px 0; }
+        .qty-box input { width: 60px; padding: 8px; background: #222; border: 1px solid #333; color: white; border-radius: 5px; text-align: center; }
+        
+        .price-tag { font-size: 22px; font-weight: 800; color: var(--accent); margin: 10px 0; }
+        .buy-btn { width: 100%; padding: 14px; background: var(--accent); color: #000; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .buy-btn:hover { opacity: 0.9; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">SAKURA GAMING</div>
-    </nav>
-
-    <header class="hero">
-        <h1>Premium UC Yükleme</h1>
-        <p>Hızlı, güvenli ve Sakura estetiğiyle oyun keyfi.</p>
-    </header>
-
-    <div class="container">
-        <div class="products">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e" alt="UC">
-                <h3>Global UC Paketleri</h3>
-                <p style="color:var(--sakura-pink); margin-bottom:10px;">Anında Teslimat</p>
-                <a href="#" class="btn">Satın Al</a>
+<div class="container">
+    <h1 style="text-align: center; margin-bottom: 40px;">UC Market</h1>
+    <div class="grid" id="product-list">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1542751110-97427bbecf20" alt="UC">
+            <h3>Global UC</h3>
+            <div class="qty-box">
+                <label>Adet:</label>
+                <input type="number" class="qty" value="1" min="1" onchange="updatePrice(this, 150)">
             </div>
+            <div class="price-tag" data-base="150">150 TL</div>
+            <button class="buy-btn" onclick="goToPayment('Global UC')">Satın Al</button>
+        </div>
 
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc" alt="E-Pin">
-                <h3>E-Pin Kodları</h3>
-                <p style="color:var(--sakura-pink); margin-bottom:10px;">7/24 Aktif</p>
-                <a href="#" class="btn">Satın Al</a>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420" alt="UC">
+            <h3>E-Pin Paket</h3>
+            <div class="qty-box">
+                <label>Adet:</label>
+                <input type="number" class="qty" value="1" min="1" onchange="updatePrice(this, 350)">
             </div>
+            <div class="price-tag" data-base="350">350 TL</div>
+            <button class="buy-btn" onclick="goToPayment('E-Pin Paket')">Satın Al</button>
+        </div>
 
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f" alt="TR">
-                <h3>TR Sunucu Yükleme</h3>
-                <p style="color:var(--sakura-pink); margin-bottom:10px;">En Uygun Fiyat</p>
-                <a href="#" class="btn">Satın Al</a>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8" alt="UC">
+            <h3>TR Sunucu</h3>
+            <div class="qty-box">
+                <label>Adet:</label>
+                <input type="number" class="qty" value="1" min="1" onchange="updatePrice(this, 650)">
             </div>
+            <div class="price-tag" data-base="650">650 TL</div>
+            <button class="buy-btn" onclick="goToPayment('TR Sunucu')">Satın Al</button>
         </div>
     </div>
+</div>
 
-    <footer>
-        &copy; 2026 Sakura Gaming. Tüm hakları saklıdır.
-    </footer>
+<script>
+    function updatePrice(input, basePrice) {
+        let card = input.closest('.card');
+        let priceDiv = card.querySelector('.price-tag');
+        let total = input.value * basePrice;
+        priceDiv.innerText = total + " TL";
+    }
+
+    function goToPayment(productName) {
+        // Buraya ödeme sayfasına yönlendirme linkini ekle
+        alert(productName + " satın alma sayfasına yönlendiriliyorsunuz...");
+        window.location.href = "https://wa.me/905xxxxxxxxx"; // Örnek olarak WhatsApp linki
+    }
+</script>
 
 </body>
 </html>
