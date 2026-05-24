@@ -6,7 +6,12 @@
     <title>Sakura Gaming | Premium UC Market</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --sakura-pink: #ffb7c5; --sakura-dark: #1a1a2e; --sakura-card: #16213e; --text-color: #ffffff; }
+        :root { 
+            --sakura-pink: #ffb7c5; 
+            --sakura-dark: #1a1a2e; 
+            --sakura-card: #16213e; 
+            --text-color: #ffffff; 
+        }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
         body { background-color: var(--sakura-dark); color: var(--text-color); padding: 20px; }
         
@@ -18,7 +23,7 @@
         
         .card { background-color: var(--sakura-card); border-radius: 20px; padding: 20px; text-align: center; border: 1px solid #2d3456; transition: 0.3s; }
         .card:hover { transform: translateY(-8px); border-color: var(--sakura-pink); }
-        .card img { width: 100%; height: 140px; object-fit: cover; border-radius: 12px; margin-bottom: 15px; }
+        .card img { width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; margin-bottom: 15px; }
         .card h3 { margin-bottom: 10px; font-size: 1rem; }
         .price { font-size: 1.2rem; font-weight: 800; color: var(--sakura-pink); margin-bottom: 15px; }
         
@@ -39,17 +44,17 @@
     <p class="subtitle">Güvenli ve Hızlı UC Yükleme Merkezi</p>
 </div>
 
-<div class="product-grid" id="product-grid">
-    </div>
+<div class="product-grid" id="product-grid"></div>
 
 <script>
+    // Tüm görseller gönderdiğiniz sırayla ve paket içeriğiyle eşleştirildi
     const products = [
-        { name: "PUBG Mobile 60 UC", price: 10 },
-        { name: "PUBG Mobile 325 UC", price: 45 },
-        { name: "PUBG Mobile 660 UC", price: 85 },
-        { name: "PUBG Mobile 1800 UC", price: 215 },
-        { name: "PUBG Mobile 3850 UC", price: 425 },
-        { name: "PUBG Mobile 8100 UC", price: 850 },
+        { name: "PUBG Mobile 60 UC", price: 10, image: "https://images.prodia.rocks/input/1640084851877.jpg" },
+        { name: "PUBG Mobile 325 UC", price: 45, image: "https://images.prodia.rocks/input/1640084948946.jpg" },
+        { name: "PUBG Mobile 660 UC", price: 85, image: "https://images.prodia.rocks/input/1640285094159.jpg" },
+        { name: "PUBG Mobile 1800 UC", price: 215, image: "https://images.prodia.rocks/input/1640285202475.jpg" },
+        { name: "PUBG Mobile 3850 UC", price: 425, image: "https://images.prodia.rocks/input/1640285314185.jpg" },
+        { name: "PUBG Mobile 8100 UC", price: 850, image: "https://images.prodia.rocks/input/1640285415548.jpg" },
     ];
 
     const grid = document.getElementById('product-grid');
@@ -57,12 +62,12 @@
     products.forEach((p, index) => {
         grid.innerHTML += `
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1542751110-97427bbecf20" alt="${p.name}">
+                <img src="${p.image}" alt="${p.name}">
                 <h3>${p.name}</h3>
                 <div class="price" id="price-${index}">${p.price} Dh</div>
                 <div class="qty-box">
                     <label>Adet:</label>
-                    <input type="number" value="1" min="1" onchange="updatePrice(this, ${p.price}, ${index})">
+                    <input type="number" id="qty-${index}" value="1" min="1" onchange="updatePrice(this, ${p.price}, ${index})">
                 </div>
                 <a href="#" onclick="sendWhatsApp('${p.name}', ${index})" class="buy-btn">Satın Al</a>
             </div>
