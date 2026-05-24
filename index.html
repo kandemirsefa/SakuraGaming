@@ -28,10 +28,13 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden; /* Simlerin taşmasını önler */
         }
         
         .content-wrapper {
             flex: 1;
+            position: relative;
+            z-index: 2; /* Kartların simlerin üstünde kalması için */
         }
         
         .header { text-align: center; margin-bottom: 40px; padding-top: 20px; }
@@ -60,6 +63,8 @@
             box-shadow: 0 0 20px rgba(83, 252, 24, 0.2);
             text-align: center;
             backdrop-filter: blur(6px);
+            position: relative;
+            z-index: 2;
         }
         .live-stream-title {
             font-size: 1.2rem;
@@ -83,7 +88,7 @@
             position: relative;
             overflow: hidden;
             width: 100%;
-            padding-top: 56.25%; /* 16:9 Oran */
+            padding-top: 56.25%; 
             border-radius: 12px;
         }
         .responsive-iframe iframe {
@@ -97,7 +102,7 @@
             border: none;
         }
 
-        /* ALT BİLGİ (FOOTER) ALANI */
+        /* FOOTER ALANI */
         .site-footer {
             background-color: rgba(26, 26, 46, 0.95);
             border-top: 2px solid rgba(255, 183, 197, 0.3);
@@ -107,6 +112,8 @@
             margin-right: -20px;
             backdrop-filter: blur(10px);
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
         .footer-container {
             max-width: 1000px;
@@ -155,6 +162,26 @@
         .secure-badge i {
             color: #4cd137;
             margin-right: 5px;
+        }
+
+        /* UÇUŞAN SİMLERİN/YAPRAKLARIN CSS AYARLARI */
+        .sakura-petal {
+            position: fixed;
+            background-color: var(--sakura-pink);
+            border-radius: 15% 70% 15% 70%; /* Yaprak şekli verir */
+            opacity: 0.7;
+            z-index: 1; /* Arka planda kalması için */
+            pointer-events: none; /* Mouse tıklamalarını engellemez */
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg);
+            }
         }
 
         @keyframes pulse {
@@ -206,6 +233,7 @@
 </footer>
 
 <script>
+    // ÜRÜN LİSTESİ
     const products = [
         { 
             name: "PUBG Mobile 60 UC", 
@@ -257,6 +285,42 @@
             </div>
         `;
     });
+
+    // UÇUŞAN SİMLER / SAKURA YAPRAKLARI SCRIPT KODU
+    function createPetal() {
+        const petal = document.createElement('div');
+        petal.classList.add('sakura-petal');
+        
+        // Rastgele boyutlandırma (6px ile 15px arası)
+        const size = Math.random() * 9 + 6;
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size}px`;
+        
+        // Rastgele yatay başlangıç konumu
+        petal.style.left = Math.random() * window.innerWidth + 'px';
+        
+        // Rastgele düşüş hızı (3 ile 7 saniye arası)
+        const duration = Math.random() * 4 + 3;
+        petal.style.animationDuration = `${duration}s`;
+        
+        // Rastgele şeffaflık
+        petal.style.opacity = Math.random() * 0.6 + 0.4;
+
+        // Görsel zenginlik için hafif renk tonu oynaması
+        if (Math.random() > 0.5) {
+            petal.style.backgroundColor = '#ffd1dc'; // Daha açık pembe parıltı
+        }
+
+        document.body.appendChild(petal);
+
+        // Ekrandan çıkan simleri temizleme
+        setTimeout(() => {
+            petal.remove();
+        }, duration * 1000);
+    }
+
+    // Her 300 milisaniyede bir yeni sim oluşturur
+    setInterval(createPetal, 300);
 </script>
 
 </body>
