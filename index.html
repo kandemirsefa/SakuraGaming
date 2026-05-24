@@ -133,7 +133,8 @@
     });
 
     const audio = document.getElementById('bgMusic');
-    audio.volume = 0.5;
+    // Ses seviyesi %4 olarak ayarlandı
+    audio.volume = 0.04; 
 
     document.addEventListener('click', () => {
         if (audio.paused) {
