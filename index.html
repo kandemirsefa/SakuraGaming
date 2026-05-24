@@ -83,19 +83,19 @@
 <div class="content-wrapper">
     <div class="header">
         <div class="site-name">SAKURA GAMING</div>
-        <p class="subtitle">Secure and Fast UC Recharge Center</p>
+        <p class="subtitle">Centre de recharge UC sécurisé et rapide</p>
     </div>
 
     <div class="tiktok-container">
         <a href="https://www.tiktok.com/@sakura___gaming/live" class="tiktok-btn" target="_blank">
-            <i class="fab fa-tiktok"></i> Watch TikTok Live
+            <i class="fab fa-tiktok"></i> TikTok Canlı Yayını İzle
         </a>
     </div>
 
     <div class="product-grid" id="product-grid"></div>
 
     <div class="live-stream-container">
-        <div class="live-stream-title"><div class="live-pulse"></div> SAKURA GAMING KICK LIVE</div>
+        <div class="live-stream-title"><div class="live-pulse"></div> SAKURA GAMING KICK CANLI YAYINI</div>
         <div class="responsive-iframe">
             <iframe src="https://player.kick.com/sakuraharuno7" allowfullscreen="true"></iframe>
         </div>
@@ -107,7 +107,7 @@
         <a href="https://www.tiktok.com/@sakura___gaming" target="_blank"><i class="fab fa-tiktok"></i></a>
         <a href="https://kick.com/sakuraharuno7" target="_blank"><i class="fa-solid fa-gamepad"></i></a>
     </div>
-    <div style="color: #777; font-size: 0.85rem;">&copy; 2026 Sakura Gaming. All Rights Reserved.</div>
+    <div style="color: #777; font-size: 0.85rem;">&copy; 2026 Sakura Gaming. Tüm Hakları Saklıdır.</div>
 </footer>
 
 <script>
@@ -127,17 +127,15 @@
                 <img src="${p.image}" alt="${p.name}">
                 <h3>${p.name}</h3>
                 <div class="price">${p.price} Dh</div>
-                <a href="${p.link}" class="buy-btn" target="_blank">Buy Now</a>
+                <a href="${p.link}" class="buy-btn" target="_blank">Satın Al</a>
             </div>
         `;
     });
 
     const audio = document.getElementById('bgMusic');
-    // Ses seviyesi %4 olarak ayarlandı
-    audio.volume = 0.04; 
+    audio.volume = 0.03;
 
-    // Kullanıcı sayfada herhangi bir yere tıkladığında müziği başlatır
-    window.addEventListener('click', () => {
+    document.body.addEventListener('click', () => {
         if (audio.paused) {
             audio.play();
         }
