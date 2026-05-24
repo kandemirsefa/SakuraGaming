@@ -76,7 +76,7 @@
 </head>
 <body>
 
-<audio id="bgMusic" loop>
+<audio id="bgMusic" loop autoplay>
     <source src="videoplayback.m4a" type="audio/mp4">
 </audio>
 
@@ -133,12 +133,12 @@
     });
 
     const audio = document.getElementById('bgMusic');
-    // Ses seviyesi %4 olarak ayarlandı
     audio.volume = 0.04; 
 
-    document.addEventListener('click', () => {
+    // Kullanıcı sayfada herhangi bir yere tıkladığında müziğin başladığından emin olur
+    window.addEventListener('click', () => {
         if (audio.paused) {
-            audio.play().catch(error => console.log("Müzik başlatılamadı:", error));
+            audio.play();
         }
     }, { once: true });
 
