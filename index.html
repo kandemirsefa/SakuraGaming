@@ -133,11 +133,12 @@
     });
 
     const audio = document.getElementById('bgMusic');
-    audio.volume = 0.03;
+    audio.volume = 0.5; // Ses seviyesi yükseltildi
 
-    document.body.addEventListener('click', () => {
+    // Sayfaya herhangi bir tıklama yapıldığında müziği başlat
+    document.addEventListener('click', () => {
         if (audio.paused) {
-            audio.play();
+            audio.play().catch(error => console.log("Müzik başlatılamadı:", error));
         }
     }, { once: true });
 
