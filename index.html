@@ -95,7 +95,7 @@
     <div class="product-grid" id="product-grid"></div>
 
     <div class="live-stream-container">
-        <div class="live-stream-title"><div class="live-pulse"></div> SAKURA GAMING KICK CANLI YAYINI</div>
+        <div class="live-stream-title"><div class="live-pulse"></div> DIRECT KICK SAKURA GAMING</div>
         <div class="responsive-iframe">
             <iframe src="https://player.kick.com/sakuraharuno7" allowfullscreen="true"></iframe>
         </div>
@@ -107,7 +107,7 @@
         <a href="https://www.tiktok.com/@sakura___gaming" target="_blank"><i class="fab fa-tiktok"></i></a>
         <a href="https://kick.com/sakuraharuno7" target="_blank"><i class="fa-solid fa-gamepad"></i></a>
     </div>
-    <div style="color: #777; font-size: 0.85rem;">&copy; 2026 Sakura Gaming. Tüm Hakları Saklıdır.</div>
+    <div style="color: #777; font-size: 0.85rem;">&copy; 2026 Sakura Gaming. Tous droits réservés.</div>
 </footer>
 
 <script>
@@ -127,15 +127,14 @@
                 <img src="${p.image}" alt="${p.name}">
                 <h3>${p.name}</h3>
                 <div class="price">${p.price} Dh</div>
-                <a href="${p.link}" class="buy-btn" target="_blank">Satın Al</a>
+                <a href="${p.link}" class="buy-btn" target="_blank">Acheter</a>
             </div>
         `;
     });
 
     const audio = document.getElementById('bgMusic');
-    audio.volume = 0.5; // Ses seviyesi yükseltildi
+    audio.volume = 0.5;
 
-    // Sayfaya herhangi bir tıklama yapıldığında müziği başlat
     document.addEventListener('click', () => {
         if (audio.paused) {
             audio.play().catch(error => console.log("Müzik başlatılamadı:", error));
