@@ -4,77 +4,324 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sakura Gaming | Premium UC Market</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Sosyal medya ikonları için FontAwesome kütüphanesi -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --sakura-pink: #ffb7c5; --sakura-dark: #1a1a2e; --kick-green: #53fc18; }
+        :root { 
+            --sakura-pink: #ffb7c5; 
+            --sakura-dark: #1a1a2e; 
+            --sakura-card: rgba(22, 33, 62, 0.85); 
+            --text-color: #ffffff; 
+            --kick-green: #53fc18; /* Kick yeşili */
+        }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
         
         body { 
-            background: linear-gradient(rgba(26, 26, 46, 0.4), rgba(26, 26, 46, 0.65)), url('Cherry_Blossom_45_B.jpg'); 
-            background-size: cover; background-attachment: fixed; color: #fff; padding: 20px; min-height: 100vh; overflow-x: hidden;
+            background-image: linear-gradient(rgba(26, 26, 46, 0.4), rgba(26, 26, 46, 0.65)), url('Cherry_Blossom_45_B.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            color: var(--text-color); 
+            padding: 20px 20px 0 20px; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden; /* Simlerin taşmasını önler */
+        }
+        
+        .content-wrapper {
+            flex: 1;
+            position: relative;
+            z-index: 2; /* Kartların simlerin üstünde kalması için */
+        }
+        
+        .header { text-align: center; margin-bottom: 40px; padding-top: 20px; }
+        .site-name { font-size: 2.8rem; color: var(--sakura-pink); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 2px 8px rgba(0,0,0,0.8); }
+        .subtitle { color: #eee; margin-top: 5px; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); font-weight: 600; }
+
+        .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; max-width: 1000px; margin: 0 auto 50px auto; }
+        
+        .card { background-color: var(--sakura-card); border-radius: 20px; padding: 20px; text-align: center; border: 1px solid rgba(45, 52, 86, 0.5); transition: 0.3s; backdrop-filter: blur(6px); }
+        .card:hover { transform: translateY(-8px); border-color: var(--sakura-pink); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        .card img { width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; margin-bottom: 15px; }
+        .card h3 { margin-bottom: 10px; font-size: 1rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+        .price { font-size: 1.2rem; font-weight: 800; color: var(--sakura-pink); margin-bottom: 15px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+        
+        .buy-btn { background-color: var(--sakura-pink); color: var(--sakura-dark); border: none; padding: 12px 20px; border-radius: 8px; font-weight: 800; cursor: pointer; text-decoration: none; display: block; width: 100%; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+        .buy-btn:hover { opacity: 0.9; transform: scale(1.02); }
+
+        /* KICK CANLI YAYIN PENCERESİ */
+        .live-stream-container {
+            max-width: 800px;
+            margin: 20px auto 50px auto;
+            background: rgba(22, 33, 62, 0.9);
+            border-radius: 20px;
+            padding: 20px;
+            border: 2px solid var(--kick-green);
+            box-shadow: 0 0 20px rgba(83, 252, 24, 0.2);
+            text-align: center;
+            backdrop-filter: blur(6px);
+            position: relative;
+            z-index: 2;
+        }
+        .live-stream-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .live-pulse {
+            width: 10px;
+            height: 10px;
+            background-color: var(--kick-green);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+        .responsive-iframe {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 56.25%; 
+            border-radius: 12px;
+        }
+        .responsive-iframe iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
-        .header { text-align: center; margin-bottom: 30px; display: flex; flex-direction: column; align-items: center; }
-        .logo-img { width: 150px; margin-bottom: -10px; }
-        .text-img { width: 300px; height: auto; }
+        /* FOOTER ALANI */
+        .site-footer {
+            background-color: rgba(26, 26, 46, 0.95);
+            border-top: 2px solid rgba(255, 183, 197, 0.3);
+            padding: 30px 20px;
+            margin-top: 50px;
+            margin-left: -20px; 
+            margin-right: -20px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .footer-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+        .social-icons a {
+            color: var(--sakura-dark);
+            background-color: var(--sakura-pink);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .social-icons a.kick-icon:hover {
+            background-color: var(--kick-green);
+            box-shadow: 0 5px 15px rgba(83, 252, 24, 0.5);
+            color: #000000;
+        }
+        .social-icons a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 183, 197, 0.4);
+            background-color: #ffffff;
+        }
+        .footer-bottom {
+            color: #777;
+            font-size: 0.85rem;
+        }
+        .secure-badge {
+            margin-bottom: 8px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        .secure-badge i {
+            color: #4cd137;
+            margin-right: 5px;
+        }
 
-        .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
-        .card { background: rgba(22, 33, 62, 0.8); border-radius: 15px; padding: 15px; text-align: center; border: 1px solid #ffb7c5; backdrop-filter: blur(5px); }
-        .card img { width: 100%; border-radius: 10px; margin-bottom: 10px; }
-        .buy-btn { display: block; background: var(--sakura-pink); color: var(--sakura-dark); padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 800; margin-top: 10px; }
+        /* UÇUŞAN SİMLERİN/YAPRAKLARIN CSS AYARLARI */
+        .sakura-petal {
+            position: fixed;
+            background-color: var(--sakura-pink);
+            border-radius: 15% 70% 15% 70%; /* Yaprak şekli verir */
+            opacity: 0.7;
+            z-index: 1; /* Arka planda kalması için */
+            pointer-events: none; /* Mouse tıklamalarını engellemez */
+            animation: fall linear infinite;
+        }
 
-        .live-stream { max-width: 800px; margin: 40px auto; border: 2px solid var(--kick-green); border-radius: 20px; overflow: hidden; }
-        .responsive-iframe { position: relative; padding-top: 56.25%; }
-        .responsive-iframe iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg);
+            }
+        }
 
-        .social-icons { text-align: center; margin-top: 30px; }
-        .social-icons a { font-size: 2rem; color: var(--sakura-pink); margin: 0 15px; }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(83, 252, 24, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(83, 252, 24, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(83, 252, 24, 0); }
+        }
 
-        .sakura-petal { position: fixed; background-color: var(--sakura-pink); border-radius: 50% 0; opacity: 0.6; pointer-events: none; animation: fall linear infinite; z-index: 1; }
-        @keyframes fall { to { transform: translateY(105vh) rotate(360deg); } }
+        @media (max-width: 768px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .product-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
+<div class="content-wrapper">
     <div class="header">
-        <img src="logo.png" class="logo-img" alt="Logo">
-        <img src="yazi.png" class="text-img" alt="Sakura Gaming Yazı">
+        <div class="site-name">SAKURA GAMING</div>
+        <p class="subtitle">Centre de recharge UC sécurisé et rapide</p>
     </div>
 
     <div class="product-grid" id="product-grid"></div>
 
-    <div class="live-stream">
+    <!-- KICK CANLI YAYIN PENCERESİ -->
+    <div class="live-stream-container">
+        <div class="live-stream-title">
+            <div class="live-pulse"></div> SAKURA GAMING KICK CANLI YAYINI
+        </div>
         <div class="responsive-iframe">
-            <iframe src="https://player.kick.com/sakuraharuno7" allowfullscreen="true"></iframe>
+            <iframe src="https://player.kick.com/sakuraharuno7" autoplay="true" scrolling="no" allowfullscreen="true"></iframe>
         </div>
     </div>
+</div>
 
-    <div class="social-icons">
-        <a href="https://www.tiktok.com/@sakura___gaming" target="_blank"><i class="fab fa-tiktok"></i></a>
-        <a href="https://kick.com/sakuraharuno7" target="_blank"><i class="fa-solid fa-gamepad"></i></a>
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-container">
+        <!-- Sosyal Medya Butonları -->
+        <div class="social-icons">
+            <a href="https://www.tiktok.com/@sakura___gaming" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://kick.com/sakuraharuno7" class="kick-icon" target="_blank" title="Kick"><i class="fa-solid fa-gamepad"></i></a>
+        </div>
+        
+        <!-- Alt Metinler -->
+        <div class="footer-bottom">
+            <div class="secure-badge"><i class="fas fa-shield-alt"></i> 100% Paiement Sécurisé & Livraison Rapide</div>
+            <p>&copy; 2026 Sakura Gaming. Tüm Hakları Saklıdır.</p>
+        </div>
     </div>
+</footer>
 
 <script>
+    // ÜRÜN LİSTESİ
     const products = [
-        { name: "60 UC", price: 10, image: "https://via.placeholder.com/150", link: "#" },
-        { name: "325 UC", price: 45, image: "https://via.placeholder.com/150", link: "#" },
-        { name: "660 UC", price: 85, image: "https://via.placeholder.com/150", link: "#" }
+        { 
+            name: "PUBG Mobile 60 UC", 
+            price: 10, 
+            image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/Gemini_Generated_Image_7onq0p7on.png?v=1779650124&width=1200",
+            link: "https://sakuragamingstore.myshopify.com/products/pubg-mobile-60-uc?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
+        },
+        { 
+            name: "PUBG Mobile 325 UC", 
+            price: 45, 
+            image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/Gemini_Generated_Image_7onq0p7on_1.png?v=1779650145&width=1200",
+            link: "https://sakuragamingstore.myshopify.com/products/pubg-mobile-325-uc?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
+        },
+        { 
+            name: "PUBG Mobile 660 UC", 
+            price: 85, 
+            image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/Gemini_Generated_Image_7onq0p7on_2.png?v=1779650163&width=1200",
+            link: "https://sakuragamingstore.myshopify.com/products/pubg-mobile-660-uc?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
+        },
+        { 
+            name: "PUBG Mobile 1800 UC", 
+            price: 215, 
+            image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/Gemini_Generated_Image_7onq0p7on_3.png?v=1779650179&width=1200",
+            link: "https://sakuragamingstore.myshopify.com/products/pubg-mobile-1800-uc?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
+        },
+        { 
+            name: "PUBG Mobile 3850 UC", 
+            price: 425, 
+            image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/Gemini_Generated_Image_7onq0p7on_4.png?v=1779650202&width=1200",
+            link: "https://sakuragamingstore.myshopify.com/products/pubg-mobile-3850-uc?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
+        },
+        { 
+            name: "PUBG Mobile 8100 UC", 
+            price: 850, 
+            image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/Gemini_Generated_Image_7onq0p7on_5_-Photoroom.png?v=1779650243&width=1200",
+            link: "https://sakuragamingstore.myshopify.com/products/pubg-mobile-8100-uc?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
+        }
     ];
+
     const grid = document.getElementById('product-grid');
-    products.forEach(p => {
-        grid.innerHTML += `<div class="card"><img src="${p.image}"><p>${p.price} Dh</p><a href="${p.link}" class="buy-btn">Satın Al</a></div>`;
+    
+    products.forEach((p) => {
+        grid.innerHTML += `
+            <div class="card">
+                <img src="${p.image}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1542751110-97427bbecf20';">
+                <h3>${p.name}</h3>
+                <div class="price">${p.price} Dh</div>
+                <a href="${p.link}" class="buy-btn" target="_blank">Satın Al</a>
+            </div>
+        `;
     });
 
+    // UÇUŞAN SİMLER / SAKURA YAPRAKLARI SCRIPT KODU
     function createPetal() {
-        const p = document.createElement('div');
-        p.classList.add('sakura-petal');
-        p.style.width = p.style.height = (Math.random() * 10 + 5) + 'px';
-        p.style.left = Math.random() * 100 + 'vw';
-        p.style.animationDuration = (Math.random() * 3 + 3) + 's';
-        document.body.appendChild(p);
-        setTimeout(() => p.remove(), 6000);
+        const petal = document.createElement('div');
+        petal.classList.add('sakura-petal');
+        
+        // Rastgele boyutlandırma (6px ile 15px arası)
+        const size = Math.random() * 9 + 6;
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size}px`;
+        
+        // Rastgele yatay başlangıç konumu
+        petal.style.left = Math.random() * window.innerWidth + 'px';
+        
+        // Rastgele düşüş hızı (3 ile 7 saniye arası)
+        const duration = Math.random() * 4 + 3;
+        petal.style.animationDuration = `${duration}s`;
+        
+        // Rastgele şeffaflık
+        petal.style.opacity = Math.random() * 0.6 + 0.4;
+
+        // Görsel zenginlik için hafif renk tonu oynaması
+        if (Math.random() > 0.5) {
+            petal.style.backgroundColor = '#ffd1dc'; // Daha açık pembe parıltı
+        }
+
+        document.body.appendChild(petal);
+
+        // Ekrandan çıkan simleri temizleme
+        setTimeout(() => {
+            petal.remove();
+        }, duration * 1000);
     }
-    setInterval(createPetal, 400);
+
+    // Her 300 milisaniyede bir yeni sim oluşturur
+    setInterval(createPetal, 300);
 </script>
+
 </body>
 </html>
