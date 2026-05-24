@@ -3,78 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakura Gaming | Premium Market</title>
+    <title>Sakura Gaming | Premium UC Market</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --accent: #ff7aa2; --bg: #0a0a0c; --card: #15151b; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: var(--bg); color: #fff; padding: 40px 20px; }
-        .container { max-width: 1000px; margin: auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        :root { --sakura-pink: #ffb7c5; --sakura-dark: #1a1a2e; --sakura-card: #16213e; --text-color: #ffffff; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--sakura-dark); color: var(--text-color); padding: 20px; }
         
-        .card { background: var(--card); padding: 25px; border-radius: 20px; border: 1px solid #222; text-align: center; }
-        .card img { width: 100%; height: 160px; object-fit: cover; border-radius: 12px; margin-bottom: 15px; }
+        .header { text-align: center; margin-bottom: 40px; padding-top: 20px; }
+        .site-name { font-size: 2.8rem; color: var(--sakura-pink); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+        .subtitle { color: #888; margin-top: 5px; }
+
+        .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; max-width: 1000px; margin: 0 auto; }
         
-        .qty-box { margin: 15px 0; }
-        .qty-box input { width: 60px; padding: 8px; background: #222; border: 1px solid #333; color: white; border-radius: 5px; text-align: center; }
+        .card { background-color: var(--sakura-card); border-radius: 20px; padding: 20px; text-align: center; border: 1px solid #2d3456; transition: 0.3s; }
+        .card:hover { transform: translateY(-8px); border-color: var(--sakura-pink); }
+        .card img { width: 100%; height: 140px; object-fit: cover; border-radius: 12px; margin-bottom: 15px; }
+        .card h3 { margin-bottom: 10px; font-size: 1rem; }
+        .price { font-size: 1.2rem; font-weight: 800; color: var(--sakura-pink); margin-bottom: 15px; }
         
-        .price-tag { font-size: 22px; font-weight: 800; color: var(--accent); margin: 10px 0; }
-        .buy-btn { width: 100%; padding: 14px; background: var(--accent); color: #000; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .qty-box { margin-bottom: 15px; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .qty-box input { width: 60px; padding: 8px; border-radius: 6px; border: none; text-align: center; background: #0f3460; color: white; }
+        
+        .buy-btn { background-color: var(--sakura-pink); color: var(--sakura-dark); border: none; padding: 12px 20px; border-radius: 8px; font-weight: 800; cursor: pointer; text-decoration: none; display: block; width: 100%; transition: 0.3s; }
         .buy-btn:hover { opacity: 0.9; }
+
+        @media (max-width: 768px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .product-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1 style="text-align: center; margin-bottom: 40px;">UC Market</h1>
-    <div class="grid" id="product-list">
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1542751110-97427bbecf20" alt="UC">
-            <h3>Global UC</h3>
-            <div class="qty-box">
-                <label>Adet:</label>
-                <input type="number" class="qty" value="1" min="1" onchange="updatePrice(this, 150)">
-            </div>
-            <div class="price-tag" data-base="150">150 TL</div>
-            <button class="buy-btn" onclick="goToPayment('Global UC')">Satın Al</button>
-        </div>
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420" alt="UC">
-            <h3>E-Pin Paket</h3>
-            <div class="qty-box">
-                <label>Adet:</label>
-                <input type="number" class="qty" value="1" min="1" onchange="updatePrice(this, 350)">
-            </div>
-            <div class="price-tag" data-base="350">350 TL</div>
-            <button class="buy-btn" onclick="goToPayment('E-Pin Paket')">Satın Al</button>
-        </div>
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8" alt="UC">
-            <h3>TR Sunucu</h3>
-            <div class="qty-box">
-                <label>Adet:</label>
-                <input type="number" class="qty" value="1" min="1" onchange="updatePrice(this, 650)">
-            </div>
-            <div class="price-tag" data-base="650">650 TL</div>
-            <button class="buy-btn" onclick="goToPayment('TR Sunucu')">Satın Al</button>
-        </div>
-    </div>
+<div class="header">
+    <div class="site-name">SAKURA GAMING</div>
+    <p class="subtitle">Güvenli ve Hızlı UC Yükleme Merkezi</p>
 </div>
 
+<div class="product-grid" id="product-grid">
+    </div>
+
 <script>
-    function updatePrice(input, basePrice) {
-        let card = input.closest('.card');
-        let priceDiv = card.querySelector('.price-tag');
+    const products = [
+        { name: "PUBG Mobile 60 UC", price: 20 },
+        { name: "PUBG Mobile 300 UC", price: 90 },
+        { name: "PUBG Mobile 600 UC", price: 170 },
+        { name: "PUBG Mobile 1500 UC", price: 400 },
+        { name: "PUBG Mobile 3000 UC", price: 750 },
+        { name: "PUBG Mobile 6000 UC", price: 1400 },
+        { name: "PUBG Mobile 8400 UC", price: 1900 },
+        { name: "PUBG Mobile 12000 UC", price: 2700 },
+        { name: "PUBG Mobile 18000 UC", price: 3900 },
+        { name: "PUBG Mobile Elite Pass", price: 350 },
+        { name: "PUBG Mobile Elite Pass Plus", price: 850 },
+        { name: "PUBG Mobile 300 UC + Bonus", price: 100 }
+    ];
+
+    const grid = document.getElementById('product-grid');
+    
+    products.forEach((p, index) => {
+        grid.innerHTML += `
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1542751110-97427bbecf20" alt="${p.name}">
+                <h3>${p.name}</h3>
+                <div class="price" id="price-${index}">${p.price} TL</div>
+                <div class="qty-box">
+                    <label>Adet:</label>
+                    <input type="number" value="1" min="1" onchange="updatePrice(this, ${p.price}, ${index})">
+                </div>
+                <a href="#" onclick="sendWhatsApp('${p.name}', ${index})" class="buy-btn">Satın Al</a>
+            </div>
+        `;
+    });
+
+    function updatePrice(input, basePrice, index) {
         let total = input.value * basePrice;
-        priceDiv.innerText = total + " TL";
+        document.getElementById(`price-${index}`).innerText = total + " TL";
     }
 
-    function goToPayment(productName) {
-        // Buraya ödeme sayfasına yönlendirme linkini ekle
-        alert(productName + " satın alma sayfasına yönlendiriliyorsunuz...");
-        window.location.href = "https://wa.me/905xxxxxxxxx"; // Örnek olarak WhatsApp linki
+    function sendWhatsApp(productName, index) {
+        let qty = document.getElementById(`qty-${index}`) ? document.getElementById(`qty-${index}`).value : 1;
+        let price = document.getElementById(`price-${index}`).innerText;
+        let message = `Merhaba, ${productName} ürününden ${qty} adet satın almak istiyorum. Toplam Tutar: ${price}`;
+        window.location.href = "https://wa.me/905357813453?text=" + encodeURIComponent(message);
     }
 </script>
 
