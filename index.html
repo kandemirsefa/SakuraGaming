@@ -76,7 +76,7 @@
 </head>
 <body>
 
-<audio id="bgMusic" loop>
+<audio id="bgMusic" loop autoplay>
     <source src="videoplayback.m4a" type="audio/mp4">
 </audio>
 
@@ -135,6 +135,7 @@
     const audio = document.getElementById('bgMusic');
     audio.volume = 0.03;
 
+    // Tarayıcı otomatik oynatmayı engellerse, ilk tıklamada başlat
     document.body.addEventListener('click', () => {
         if (audio.paused) {
             audio.play();
