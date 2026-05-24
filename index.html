@@ -36,7 +36,6 @@
         .site-name { font-size: 2.8rem; color: var(--sakura-pink); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 2px 8px rgba(0,0,0,0.8); }
         .subtitle { color: #eee; margin-top: 5px; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); font-weight: 600; margin-bottom: 20px; }
 
-        /* TIKTOK BUTON STİLİ */
         .tiktok-live-container { text-align: center; margin-bottom: 30px; }
         .tiktok-btn { display: inline-flex; align-items: center; gap: 10px; background: #000; color: #fff; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: 800; border: 2px solid var(--sakura-pink); transition: 0.3s; }
         .tiktok-btn:hover { background: var(--sakura-pink); color: var(--sakura-dark); transform: scale(1.05); }
@@ -101,18 +100,19 @@
 
 <script>
     const products = [
-        { name: "PUBG Mobile 60 UC", price: 10, link: "#" },
-        { name: "PUBG Mobile 325 UC", price: 45, link: "#" },
-        { name: "PUBG Mobile 660 UC", price: 85, link: "#" },
-        { name: "PUBG Mobile 1800 UC", price: 215, link: "#" },
-        { name: "PUBG Mobile 3850 UC", price: 425, link: "#" },
-        { name: "PUBG Mobile 8100 UC", price: 850, link: "#" }
+        { name: "PUBG Mobile 60 UC", price: 10, image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/Gemini_Generated_Image_7onq0p7on.png?v=1779650124&width=1200", link: "#" },
+        { name: "PUBG Mobile 325 UC", price: 45, image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/Gemini_Generated_Image_7onq0p7on_1.png?v=1779650145&width=1200", link: "#" },
+        { name: "PUBG Mobile 660 UC", price: 85, image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/Gemini_Generated_Image_7onq0p7on_2.png?v=1779650163&width=1200", link: "#" },
+        { name: "PUBG Mobile 1800 UC", price: 215, image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/Gemini_Generated_Image_7onq0p7on_3.png?v=1779650179&width=1200", link: "#" },
+        { name: "PUBG Mobile 3850 UC", price: 425, image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/Gemini_Generated_Image_7onq0p7on_4.png?v=1779650202&width=1200", link: "#" },
+        { name: "PUBG Mobile 8100 UC", price: 850, image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/Gemini_Generated_Image_7onq0p7on_5_-Photoroom.png?v=1779650243&width=1200", link: "#" }
     ];
 
     const grid = document.getElementById('product-grid');
     products.forEach(p => {
         grid.innerHTML += `
             <div class="card">
+                <img src="${p.image}" alt="${p.name}">
                 <h3>${p.name}</h3>
                 <div class="price">${p.price} Dh</div>
                 <a href="${p.link}" class="buy-btn" target="_blank">Satın Al</a>
