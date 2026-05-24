@@ -36,7 +36,6 @@
         .site-name { font-size: 2.8rem; color: var(--sakura-pink); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 2px 8px rgba(0,0,0,0.8); }
         .subtitle { color: #eee; margin-top: 5px; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); font-weight: 600; }
 
-        /* YENİ EKLENEN TIKTOK BUTONU STİLİ */
         .tiktok-container { text-align: center; margin-bottom: 30px; }
         .tiktok-btn { 
             display: inline-flex; align-items: center; gap: 10px; background: #000; color: #fff; 
@@ -54,91 +53,4 @@
         .buy-btn { background-color: var(--sakura-pink); color: var(--sakura-dark); border: none; padding: 12px 20px; border-radius: 8px; font-weight: 800; cursor: pointer; text-decoration: none; display: block; width: 100%; transition: 0.3s; }
         
         .live-stream-container { max-width: 800px; margin: 20px auto 50px auto; background: rgba(22, 33, 62, 0.9); border-radius: 20px; padding: 20px; border: 2px solid var(--kick-green); text-align: center; backdrop-filter: blur(6px); position: relative; z-index: 2; }
-        .live-stream-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .live-pulse { width: 10px; height: 10px; background-color: var(--kick-green); border-radius: 50%; animation: pulse 1.5s infinite; }
-        .responsive-iframe { position: relative; width: 100%; padding-top: 56.25%; border-radius: 12px; overflow: hidden; }
-        .responsive-iframe iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
-        .site-footer { background-color: rgba(26, 26, 46, 0.95); border-top: 2px solid rgba(255, 183, 197, 0.3); padding: 30px 20px; margin-top: 50px; text-align: center; }
-        .social-icons { display: flex; gap: 20px; justify-content: center; margin-bottom: 15px; }
-        .social-icons a { color: var(--sakura-dark); background-color: var(--sakura-pink); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; text-decoration: none; }
-        
-        .sakura-petal { position: fixed; background-color: var(--sakura-pink); border-radius: 15% 70% 15% 70%; opacity: 0.7; z-index: 1; pointer-events: none; animation: fall linear infinite; }
-        @keyframes fall { 0% { transform: translateY(-10px) rotate(0deg); } 100% { transform: translateY(105vh) rotate(360deg); } }
-        @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(83, 252, 24, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(83, 252, 24, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(83, 252, 24, 0); } }
-        @media (max-width: 768px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
-    </style>
-</head>
-<body>
-
-<div class="content-wrapper">
-    <div class="header">
-        <div class="site-name">SAKURA GAMING</div>
-        <p class="subtitle">Centre de recharge UC sécurisé et rapide</p>
-    </div>
-
-    <div class="tiktok-container">
-        <a href="https://www.tiktok.com/@sakura___gaming/live" target="_blank" class="tiktok-btn">
-            <i class="fab fa-tiktok"></i> CANLI YAYINI TIKTOK'TA İZLE
-        </a>
-    </div>
-
-    <div class="product-grid" id="product-grid"></div>
-
-    <div class="live-stream-container">
-        <div class="live-stream-title">
-            <div class="live-pulse"></div> SAKURA GAMING KICK CANLI YAYINI
-        </div>
-        <div class="responsive-iframe">
-            <iframe src="https://player.kick.com/sakuraharuno7" autoplay="true" scrolling="no" allowfullscreen="true"></iframe>
-        </div>
-    </div>
-</div>
-
-<footer class="site-footer">
-    <div class="social-icons">
-        <a href="https://www.tiktok.com/@sakura___gaming" target="_blank"><i class="fab fa-tiktok"></i></a>
-        <a href="https://kick.com/sakuraharuno7" target="_blank"><i class="fa-solid fa-gamepad"></i></a>
-    </div>
-    <p>&copy; 2026 Sakura Gaming. Tüm Hakları Saklıdır.</p>
-</footer>
-
-<script>
-    const products = [
-        { name: "PUBG Mobile 60 UC", price: 10, image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/Gemini_Generated_Image_7onq0p7on.png?v=1779650124&width=1200", link: "#" },
-        { name: "PUBG Mobile 325 UC", price: 45, image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/Gemini_Generated_Image_7onq0p7on_1.png?v=1779650145&width=1200", link: "#" },
-        { name: "PUBG Mobile 660 UC", price: 85, image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/Gemini_Generated_Image_7onq0p7on_2.png?v=1779650163&width=1200", link: "#" },
-        { name: "PUBG Mobile 1800 UC", price: 215, image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/Gemini_Generated_Image_7onq0p7on_3.png?v=1779650179&width=1200", link: "#" },
-        { name: "PUBG Mobile 3850 UC", price: 425, image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/Gemini_Generated_Image_7onq0p7on_4.png?v=1779650202&width=1200", link: "#" },
-        { name: "PUBG Mobile 8100 UC", price: 850, image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/Gemini_Generated_Image_7onq0p7on_5_-Photoroom.png?v=1779650243&width=1200", link: "#" }
-    ];
-
-    const grid = document.getElementById('product-grid');
-    products.forEach(p => {
-        grid.innerHTML += `
-            <div class="card">
-                <img src="${p.image}" alt="${p.name}">
-                <h3>${p.name}</h3>
-                <div class="price">${p.price} Dh</div>
-                <a href="${p.link}" class="buy-btn" target="_blank">Satın Al</a>
-            </div>
-        `;
-    });
-
-    function createPetal() {
-        const petal = document.createElement('div');
-        petal.classList.add('sakura-petal');
-        const size = Math.random() * 9 + 6;
-        petal.style.width = `${size}px`;
-        petal.style.height = `${size}px`;
-        petal.style.left = Math.random() * window.innerWidth + 'px';
-        const duration = Math.random() * 4 + 3;
-        petal.style.animationDuration = `${duration}s`;
-        document.body.appendChild(petal);
-        setTimeout(() => petal.remove(), duration * 1000);
-    }
-    setInterval(createPetal, 300);
-</script>
-
-</body>
-</html>
+        .live-stream-
