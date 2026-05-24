@@ -9,19 +9,21 @@
         :root { 
             --sakura-pink: #ffb7c5; 
             --sakura-dark: #1a1a2e; 
-            --sakura-card: rgba(22, 33, 62, 0.85); 
+            --sakura-card: rgba(22, 33, 62, 0.85); /* Kartlar şeffaflaştırıldı ki arkadaki kiraz çiçekleri çok şık görünsün */
             --text-color: #ffffff; 
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
         
         body { 
-            /* Arka plan resmin buraya gelecek */
-            background-image: linear-gradient(rgba(26, 26, 46, 0.45), rgba(26, 26, 46, 0.7)), url('BURAYA_SHOPIFY_DAN_ALDIGIN_RESIM_LINKINI_YAPISTIR'); 
+            /* İstediğin pembe kiraz çiçeği resminin doğrudan linki arka plan olarak eklendi */
+            background-image: linear-gradient(rgba(26, 26, 46, 0.4), rgba(26, 26, 46, 0.65)), url('https://img.freepik.com/free-vector/floral-with-cherry-blossoms-full-bloom-pink_12157944.htm?w=1200'); 
             
+            /* Resmi ekrana tam sığdırma ve sabitleme ayarları */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed; 
+            background-attachment: fixed; /* Sayfa aşağı kaydırılsa bile arka plan resmi ekranda sabit durur */
+            
             color: var(--text-color); 
             padding: 20px; 
         }
