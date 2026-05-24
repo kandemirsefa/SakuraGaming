@@ -27,9 +27,6 @@
         .card h3 { margin-bottom: 10px; font-size: 1rem; }
         .price { font-size: 1.2rem; font-weight: 800; color: var(--sakura-pink); margin-bottom: 15px; }
         
-        .qty-box { margin-bottom: 15px; display: flex; justify-content: center; align-items: center; gap: 10px; }
-        .qty-box input { width: 60px; padding: 8px; border-radius: 6px; border: none; text-align: center; background: #0f3460; color: white; }
-        
         .buy-btn { background-color: var(--sakura-pink); color: var(--sakura-dark); border: none; padding: 12px 20px; border-radius: 8px; font-weight: 800; cursor: pointer; text-decoration: none; display: block; width: 100%; transition: 0.3s; }
         .buy-btn:hover { opacity: 0.9; }
 
@@ -47,44 +44,58 @@
 <div class="product-grid" id="product-grid"></div>
 
 <script>
-    // Tüm görseller gönderdiğiniz sırayla ve paket içeriğiyle eşleştirildi
+    // 6 ürünün tamamının resmi ve yönleneceği Shopify linkleri düzenlendi
     const products = [
-        { name: "PUBG Mobile 60 UC", price: 10, image: "https://images.prodia.rocks/input/1640084851877.jpg" },
-        { name: "PUBG Mobile 325 UC", price: 45, image: "https://images.prodia.rocks/input/1640084948946.jpg" },
-        { name: "PUBG Mobile 660 UC", price: 85, image: "https://images.prodia.rocks/input/1640285094159.jpg" },
-        { name: "PUBG Mobile 1800 UC", price: 215, image: "https://images.prodia.rocks/input/1640285202475.jpg" },
-        { name: "PUBG Mobile 3850 UC", price: 425, image: "https://images.prodia.rocks/input/1640285314185.jpg" },
-        { name: "PUBG Mobile 8100 UC", price: 850, image: "https://images.prodia.rocks/input/1640285415548.jpg" },
+        { 
+            name: "PUBG Mobile 60 UC", 
+            price: 10, 
+            image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/60uc.png",
+            link: "https://sakuragamingstore.myshopify.com/products/pubg-mobile-60-uc?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
+        },
+        { 
+            name: "PUBG Mobile 325 UC", 
+            price: 45, 
+            image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/325uc.png",
+            link: "https://sakuragamingstore.myshopify.com/products/pubg-mobile-325-uc?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
+        },
+        { 
+            name: "PUBG Mobile 660 UC", 
+            price: 85, 
+            image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/660uc.png",
+            link: "https://sakuragamingstore.myshopify.com/products/pubg-mobile-660-uc?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
+        },
+        { 
+            name: "PUBG Mobile 1800 UC", 
+            price: 215, 
+            image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/1800uc.png",
+            link: "https://sakuragamingstore.myshopify.com/products/pubg-mobile-1800-uc?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
+        },
+        { 
+            name: "PUBG Mobile 3850 UC", 
+            price: 425, 
+            image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/3850uc.png",
+            link: "https://sakuragamingstore.myshopify.com/products/pubg-mobile-3850-uc?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
+        },
+        { 
+            name: "PUBG Mobile 8100 UC", 
+            price: 850, 
+            image: "https://sakuragamingstore.myshopify.com/cdn/shop/files/8100uc.png",
+            link: "https://sakuragamingstore.myshopify.com/products/pubg-mobile-8100-uc?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
+        }
     ];
 
     const grid = document.getElementById('product-grid');
     
-    products.forEach((p, index) => {
+    products.forEach((p) => {
         grid.innerHTML += `
             <div class="card">
-                <img src="${p.image}" alt="${p.name}">
+                <img src="${p.image}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1542751110-97427bbecf20';">
                 <h3>${p.name}</h3>
-                <div class="price" id="price-${index}">${p.price} Dh</div>
-                <div class="qty-box">
-                    <label>Adet:</label>
-                    <input type="number" id="qty-${index}" value="1" min="1" onchange="updatePrice(this, ${p.price}, ${index})">
-                </div>
-                <a href="#" onclick="sendWhatsApp('${p.name}', ${index})" class="buy-btn">Satın Al</a>
+                <div class="price">${p.price} Dh</div>
+                <a href="${p.link}" class="buy-btn" target="_blank">Satın Al</a>
             </div>
         `;
     });
-
-    function updatePrice(input, basePrice, index) {
-        let total = input.value * basePrice;
-        document.getElementById(`price-${index}`).innerText = total + " Dh";
-    }
-
-    function sendWhatsApp(productName, index) {
-        let qty = document.getElementById(`qty-${index}`) ? document.getElementById(`qty-${index}`).value : 1;
-        let price = document.getElementById(`price-${index}`).innerText;
-        let message = `Merhaba, ${productName} ürününden ${qty} adet satın almak istiyorum. Toplam Tutar: ${price}`;
-        window.location.href = "https://wa.me/905357813453?text=" + encodeURIComponent(message);
-    }
 </script>
 
 </body>
